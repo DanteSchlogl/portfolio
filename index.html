@@ -131,6 +131,17 @@ h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:46px}
 .job li::before{content:"→";position:absolute;left:0;color:var(--a)}
 
 /* education */
+.thesis{display:grid;grid-template-columns:1.2fr .8fr;gap:0;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 18%,var(--card)),var(--card) 60%);border:1px solid var(--line);border-radius:28px;overflow:hidden;position:relative}
+.thesis .l{padding:44px}
+.thesis .r{padding:44px;background:color-mix(in srgb,var(--bg2) 70%,transparent);border-left:1px solid var(--line)}
+.thesis h3{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:14px 0 16px}
+.thesis p{color:var(--muted);margin-bottom:14px}
+.thesis .tags{margin:22px 0 28px}
+.thesis h4{font:500 .78rem "JetBrains Mono";letter-spacing:.12em;text-transform:uppercase;color:var(--b);margin-bottom:16px}
+.thesis ol{list-style:none;counter-reset:n;display:grid;gap:11px}
+.thesis li{counter-increment:n;display:flex;gap:12px;align-items:center;font-size:.93rem}
+.thesis li::before{content:counter(n,decimal-leading-zero);font:500 .74rem "JetBrains Mono";color:var(--a);border:1px solid var(--line);border-radius:8px;padding:3px 7px;background:var(--card)}
+@media(max-width:860px){.thesis{grid-template-columns:1fr}.thesis .r{border-left:0;border-top:1px solid var(--line)}.thesis .l,.thesis .r{padding:28px}}
 .edu{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .course{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:.3s}
 .course:hover{transform:translateY(-4px);border-color:var(--a)}
@@ -167,6 +178,7 @@ footer{padding:36px 0;color:var(--muted);font-size:.85rem;text-align:center;bord
       <a href="#sobre" data-i18n="nav_about">Sobre mí</a>
       <a href="#skills" data-i18n="nav_skills">Skills</a>
       <a href="#experiencia" data-i18n="nav_exp">Experiencia</a>
+      <a href="#tesis" data-i18n="nav_thesis">Thesis</a>
       <a href="#formacion" data-i18n="nav_edu">Formación</a>
       <a href="#contacto" data-i18n="nav_contact">Contacto</a>
     </div>
@@ -266,6 +278,39 @@ footer{padding:36px 0;color:var(--muted);font-size:.85rem;text-align:center;bord
   </div>
 </section>
 
+<section id="tesis">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="e_thesis">// thesis project</div>
+    <h2 class="rv" data-i18n="h_thesis">Featured <span class="grad">work</span></h2>
+    <div class="thesis rv">
+      <div class="l">
+        <span class="date" data-i18n="th_tag">Thesis · Universidad Abierta Interamericana</span>
+        <h3>Edelstahl <span class="grad">ERP</span></h3>
+        <p data-i18n="th_p1">A full ERP system built as my thesis project at UAI, delivered end to end: a C# application backed by a SQL Server database, with data integrity verification (horizontal and vertical check digits), backup and recovery tooling, and a ready-to-run installer.</p>
+        <p data-i18n="th_p2">The repository includes the complete documentation: UML model, programmer manual, user manual and installation guide.</p>
+        <div class="tags"><span class="tag">C#</span><span class="tag">SQL Server · T-SQL</span><span class="tag">Enterprise Architect · UML</span><span class="tag">PowerShell</span></div>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/DanteSchlogl/Edelstahl-ERP" target="_blank" rel="noopener" data-i18n="th_repo">View repository ↗</a>
+          <a class="btn ghost" href="https://github.com/DanteSchlogl/Edelstahl-ERP/tree/main/1%20-%20Documentacion" target="_blank" rel="noopener" data-i18n="th_doc">Read the documentation ↗</a>
+        </div>
+      </div>
+      <div class="r">
+        <h4 data-i18n="th_del">What's inside</h4>
+        <ol>
+          <li data-i18n="th_d1">Project documentation</li>
+          <li data-i18n="th_d2">Programmer manual</li>
+          <li data-i18n="th_d3">UML model (Enterprise Architect)</li>
+          <li data-i18n="th_d4">Database scripts &amp; backups</li>
+          <li data-i18n="th_d5">User manual</li>
+          <li data-i18n="th_d6">Installation manual</li>
+          <li data-i18n="th_d7">Software installer</li>
+          <li data-i18n="th_d8">Source code</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="formacion">
   <div class="wrap">
     <div class="eyebrow rv" data-i18n="e_edu">// formación</div>
@@ -317,6 +362,10 @@ e_exp:"// experiencia",h_exp:'Trayectoria <span class="grad">profesional</span>'
 d1:"Abr 2026 — Actualidad",d2:"May 2022 — Sep 2022",d3:"Dic 2021 — Abr 2022",
 j1a:"Monitoreo y resolución de incidentes en producción.",j1b:"Iniciativas de optimización de procesos y automatización.",j1c:"Soporte técnico y asistencia en troubleshooting.",
 j2a:"Actividades de migración de datos.",j2b:"Implementación de soluciones de software y APIs.",j2c:"Identificación, análisis y documentación de errores a partir de reportes de incidentes.",
+nav_thesis:"Tesis",e_thesis:"// proyecto de tesis",h_thesis:'Trabajo <span class="grad">destacado</span>',th_tag:"Tesis · Universidad Abierta Interamericana",
+th_p1:"Un sistema ERP completo desarrollado como mi proyecto de tesis en la UAI, entregado de punta a punta: una aplicación en C# sobre una base de datos SQL Server, con verificación de integridad de datos (dígitos verificadores horizontales y verticales), herramientas de backup y recuperación, e instalador listo para usar.",
+th_p2:"El repositorio incluye la documentación completa: modelo UML, manual del programador, manual de usuario y guía de instalación.",
+th_repo:"Ver repositorio ↗",th_doc:"Leer la documentación ↗",th_del:"Qué incluye",th_d1:"Documentación del proyecto",th_d2:"Manual del programador",th_d3:"Modelo UML (Enterprise Architect)",th_d4:"Scripts y backups de base de datos",th_d5:"Manual de usuario",th_d6:"Manual de instalación",th_d7:"Instalador del software",th_d8:"Código fuente",
 e_edu:"// formación",h_edu:'Educación y <span class="grad">capacitación</span>',now:"Actualidad",deg:"Estudiante de 3.er año en Sistemas",year3:"En curso",
 h_contact:'¿Armamos algo <span class="grad">juntos?</span>',contact_p:"Estoy abierto a oportunidades en desarrollo Back-End, QA y análisis de datos. Escribime y charlamos.",
 roles:["Estudiante de 3.er año de Sistemas","Desarrollador Back-End Java","QA Tester","Analista de datos con Python"],greet:"Hola, soy"},
@@ -334,6 +383,10 @@ e_exp:"// experience",h_exp:'Professional <span class="grad">journey</span>',
 d1:"Apr 2026 — Present",d2:"May 2022 — Sep 2022",d3:"Dec 2021 — Apr 2022",
 j1a:"Monitored and resolved production incidents.",j1b:"Implemented process optimization and automation initiatives.",j1c:"Provided technical support and troubleshooting assistance.",
 j2a:"Performed data migration activities.",j2b:"Implemented software solutions and APIs.",j2c:"Identified, analyzed and documented errors based on incident reports.",
+nav_thesis:"Thesis",e_thesis:"// thesis project",h_thesis:'Featured <span class="grad">work</span>',th_tag:"Thesis · Universidad Abierta Interamericana",
+th_p1:"A full ERP system built as my thesis project at UAI, delivered end to end: a C# application backed by a SQL Server database, with data integrity verification (horizontal and vertical check digits), backup and recovery tooling, and a ready-to-run installer.",
+th_p2:"The repository includes the complete documentation: UML model, programmer manual, user manual and installation guide.",
+th_repo:"View repository ↗",th_doc:"Read the documentation ↗",th_del:"What's inside",th_d1:"Project documentation",th_d2:"Programmer manual",th_d3:"UML model (Enterprise Architect)",th_d4:"Database scripts & backups",th_d5:"User manual",th_d6:"Installation manual",th_d7:"Software installer",th_d8:"Source code",
 e_edu:"// education",h_edu:'Education &amp; <span class="grad">training</span>',now:"Present",deg:"3rd-Year Systems Student",year3:"In progress",
 h_contact:'Let\'s build something <span class="grad">together?</span>',contact_p:"I'm open to opportunities in Back-End development, QA and data analytics. Drop me a line.",
 roles:["3rd-year Systems student","Java Back-End Developer","QA Tester","Data Analyst with Python"],greet:"Hi, I'm"}
