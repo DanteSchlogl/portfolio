@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dante Schlögl — Systems Engineer · QA · Data</title>
+<meta name="description" content="Portfolio de Dante Schlögl: estudiante de Ingeniería en Sistemas, Back-End Java, QA y Data Analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080d; --bg2:#0d0f17; --card:#11141e; --line:rgba(255,255,255,.08);
+  --text:#e8eaf2; --muted:#9097ab; --a:#7c6bff; --b:#22d3ee; --c:#34d399;
+  --grad:linear-gradient(120deg,var(--a),var(--b));
+  --r:20px;
+}
+:root[data-theme="light"]{
+  --bg:#f6f7fb; --bg2:#eceef6; --card:#ffffff; --line:rgba(10,15,40,.1);
+  --text:#12142a; --muted:#5b6179; --a:#5b4bf0; --b:#0891b2; --c:#059669;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.1;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:"JetBrains Mono",monospace}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* background glow */
+.bg-orb{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bg-orb i{position:absolute;border-radius:50%;filter:blur(120px);opacity:.28}
+.bg-orb i:nth-child(1){width:520px;height:520px;background:var(--a);top:-120px;left:-120px}
+.bg-orb i:nth-child(2){width:460px;height:460px;background:var(--b);bottom:-160px;right:-100px;opacity:.2}
+:root[data-theme="light"] .bg-orb i{opacity:.14}
+.bg-grid{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse at 50% 0,#000 0,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 50% 0,#000 0,transparent 70%);opacity:.5}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:"Space Grotesk";font-weight:700;font-size:1.15rem}
+.logo span{color:var(--b)}
+.links{display:flex;gap:28px;font-size:.92rem;color:var(--muted)}
+.links a{transition:color .2s}.links a:hover{color:var(--text)}
+.tools{display:flex;gap:8px;align-items:center}
+.pill{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:7px 13px;font:500 .8rem "JetBrains Mono",monospace;cursor:pointer;transition:.2s}
+.pill:hover{border-color:var(--a)}
+@media(max-width:760px){.links{display:none}}
+
+/* hero */
+.hero{padding:90px 0 70px}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--card);padding:7px 14px;border-radius:999px;font-size:.82rem;color:var(--muted);margin-bottom:26px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 0 0 var(--c);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font-size:clamp(2.6rem,6.2vw,4.8rem);margin-bottom:22px}
+.role{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);min-height:2em;margin-bottom:18px}
+.role b{color:var(--text);font-weight:500}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--b);vertical-align:-.15em;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{color:var(--muted);max-width:560px;margin-bottom:34px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:600;font-size:.95rem;transition:.25s;border:1px solid var(--line)}
+.btn.primary{background:var(--grad);color:#07080d;border:0;box-shadow:0 10px 30px -10px var(--a)}
+.btn.primary:hover{transform:translateY(-3px);box-shadow:0 18px 36px -10px var(--a)}
+.btn.ghost{background:var(--card)}.btn.ghost:hover{border-color:var(--b);transform:translateY(-3px)}
+.photo{position:relative;justify-self:center;width:min(100%,360px)}
+.photo::before{content:"";position:absolute;inset:-3px;border-radius:32px;background:var(--grad);filter:blur(28px);opacity:.45;animation:float 7s ease-in-out infinite}
+.photo .frame{position:relative;border-radius:30px;padding:3px;background:var(--grad)}
+.photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:27px;filter:saturate(1.05)}
+.chip{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.8rem;box-shadow:0 12px 30px -12px #000a;display:flex;gap:8px;align-items:center;animation:float 6s ease-in-out infinite}
+.chip.c1{left:-26px;bottom:48px}.chip.c2{right:-20px;top:36px;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-10px)}}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.photo{order:-1;width:min(78%,300px)}.chip.c1{left:-8px}.chip.c2{right:-8px}.hero{padding-top:50px}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.stat b{display:block;font:700 2.2rem "Space Grotesk";background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--muted);font-size:.88rem}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* sections */
+section{padding:90px 0}
+.eyebrow{font:500 .8rem "JetBrains Mono";color:var(--b);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:46px}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.about p{color:var(--muted);margin-bottom:16px;font-size:1.04rem}
+.about p strong{color:var(--text);font-weight:500}
+.langs{display:grid;gap:14px}
+.lang{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.lang div{display:flex;justify-content:space-between;font-weight:500;margin-bottom:10px}
+.lang small{color:var(--muted);font-weight:400}
+.bar{height:6px;background:var(--bg2);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--grad);border-radius:9px;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.in .bar i{width:var(--w)}
+@media(max-width:800px){.about{grid-template-columns:1fr}}
+
+/* skills bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;overflow:hidden;transition:.3s}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--x,50%) var(--y,0),color-mix(in srgb,var(--a) 22%,transparent),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{border-color:color-mix(in srgb,var(--a) 50%,var(--line));transform:translateY(-4px)}
+.card:hover::after{opacity:1}
+.card h3{font-size:1.2rem;margin:14px 0 16px}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:color-mix(in srgb,var(--a) 16%,transparent);border:1px solid var(--line)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font:400 .8rem "JetBrains Mono";padding:6px 11px;border-radius:9px;background:var(--bg2);border:1px solid var(--line);color:var(--text)}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+@media(max-width:900px){.s2,.s3,.s4{grid-column:span 6}}
+@media(min-width:901px) and (max-width:1000px){.s2{grid-column:span 3}}
+
+/* timeline */
+.tl{position:relative;display:grid;gap:22px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--a),var(--b),transparent)}
+.job{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 28px;transition:.3s}
+.job:hover{border-color:color-mix(in srgb,var(--b) 50%,var(--line));transform:translateX(6px)}
+.job::before{content:"";position:absolute;left:-34px;top:32px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--b)}
+.job.now::before{background:var(--c);border-color:var(--c);box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 22%,transparent)}
+.job header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.job h3{font-size:1.28rem}
+.job .co{color:var(--b);font-weight:500}
+.date{font:400 .82rem "JetBrains Mono";color:var(--muted);border:1px solid var(--line);padding:5px 11px;border-radius:999px;height:fit-content}
+.job ul{list-style:none;display:grid;gap:8px;color:var(--muted)}
+.job li{padding-left:22px;position:relative}
+.job li::before{content:"→";position:absolute;left:0;color:var(--a)}
+
+/* education */
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.course{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:.3s}
+.course:hover{transform:translateY(-4px);border-color:var(--a)}
+.course .d{font:400 .78rem "JetBrains Mono";color:var(--b)}
+.course h3{font-size:1.08rem;margin:10px 0 6px}
+.course p{color:var(--muted);font-size:.9rem}
+.course.main{grid-column:span 3;background:linear-gradient(135deg,color-mix(in srgb,var(--a) 20%,var(--card)),var(--card));display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.course.main h3{font-size:1.5rem}
+@media(max-width:860px){.edu{grid-template-columns:1fr 1fr}.course.main{grid-column:span 2}}
+@media(max-width:560px){.edu{grid-template-columns:1fr}.course.main{grid-column:span 1}}
+
+/* contact */
+.contact{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:32px;padding:70px 24px;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;width:480px;height:480px;border-radius:50%;background:var(--grad);filter:blur(130px);opacity:.18;top:-260px;left:50%;transform:translateX(-50%)}
+.contact h2{margin-bottom:16px;position:relative}
+.contact p{color:var(--muted);max-width:520px;margin:0 auto 32px;position:relative}
+.contact .cta{justify-content:center;position:relative}
+.info{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:34px;color:var(--muted);font-size:.9rem;position:relative}
+footer{padding:36px 0;color:var(--muted);font-size:.85rem;text-align:center;border-top:1px solid var(--line)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="bg-orb"><i></i><i></i></div><div class="bg-grid"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">dante<span>.</span>dev</a>
+    <div class="links">
+      <a href="#sobre" data-i18n="nav_about">Sobre mí</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
+      <a href="#experiencia" data-i18n="nav_exp">Experiencia</a>
+      <a href="#formacion" data-i18n="nav_edu">Formación</a>
+      <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+    </div>
+    <div class="tools">
+      <button class="pill" id="lang" aria-label="Cambiar idioma">EN</button>
+      <button class="pill" id="theme" aria-label="Cambiar tema">☾</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="badge rv"><span class="dot"></span><span data-i18n="badge">Disponible para nuevas oportunidades · Buenos Aires</span></div>
+      <h1 class="rv">Hola, soy <span class="grad">Dante Schlögl</span></h1>
+      <p class="role rv mono"><b>&gt;</b> <span id="typed"></span><span class="caret"></span></p>
+      <p class="lead rv" data-i18n="lead">Estudiante de Ingeniería en Sistemas con base en Java/Spring Boot, calidad de software y análisis de datos. Me gusta resolver problemas, automatizar procesos y entregar soluciones sólidas en equipos ágiles.</p>
+      <div class="cta rv">
+        <a class="btn primary" href="#contacto" data-i18n="cta1">Hablemos →</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/dante-alberto-luis-orihuela-schl%C3%B6gl-703931103" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="photo rv">
+      <div class="frame"><img src="assets/dante.jpg" alt="Retrato de Dante Schlögl"></div>
+      <div class="chip c1"><span>☕</span> Java · Spring Boot</div>
+      <div class="chip c2"><span>📊</span> Python · Power BI</div>
+    </div>
+  </div>
+  <div class="wrap" style="display:block;margin-top:56px">
+    <div class="stats rv">
+      <div class="stat"><b data-count="3">0</b><span data-i18n="s1">años de Ingeniería en Sistemas</span></div>
+      <div class="stat"><b data-count="3">0</b><span data-i18n="s2">roles en IT y QA</span></div>
+      <div class="stat"><b data-count="5">0</b><span data-i18n="s3">cursos técnicos completados</span></div>
+      <div class="stat"><b data-count="3">0</b><span data-i18n="s4">idiomas</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="e_about">// sobre mí</div>
+    <h2 class="rv" data-i18n="h_about">Mente analítica, <span class="grad">enfoque en calidad</span></h2>
+    <div class="about">
+      <div class="rv">
+        <p data-i18n="about1">Soy estudiante de <strong>Ingeniería en Sistemas</strong> en la Universidad Abierta Interamericana, con experiencia práctica en <strong>testing, migración de datos, APIs y soporte de producción</strong>.</p>
+        <p data-i18n="about2">Trabajo con metodologías ágiles (Scrum), me motiva aprender tecnologías nuevas de forma continua y aportar a equipos de alto rendimiento con <strong>soluciones eficientes y de calidad</strong>.</p>
+        <p data-i18n="about3">Mi recorrido combina tres frentes: desarrollo <strong>Back-End</strong>, <strong>QA</strong> y <strong>análisis de datos</strong>.</p>
+      </div>
+      <div class="langs rv">
+        <div class="lang"><div>Español <small data-i18n="l1">Nativo</small></div><div class="bar"><i style="--w:100%"></i></div></div>
+        <div class="lang"><div>Português <small data-i18n="l2">Avanzado</small></div><div class="bar"><i style="--w:88%"></i></div></div>
+        <div class="lang"><div>English <small data-i18n="l3">Intermedio-alto (B2)</small></div><div class="bar"><i style="--w:72%"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow rv">// skills</div>
+    <h2 class="rv" data-i18n="h_skills">Stack y <span class="grad">herramientas</span></h2>
+    <div class="bento">
+      <div class="card s4 rv"><div class="ico">⚙️</div><h3>Back-End</h3>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">RESTful APIs</span><span class="tag">MySQL</span></div></div>
+      <div class="card s2 rv"><div class="ico">🎨</div><h3>Front-End</h3>
+        <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span></div></div>
+      <div class="card s3 rv"><div class="ico">📈</div><h3>Data Science &amp; Analytics</h3>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Data Modeling</span><span class="tag">Regression Analysis</span><span class="tag">EDA</span><span class="tag">Data Visualization</span></div></div>
+      <div class="card s3 rv"><div class="ico">🧪</div><h3>Testing &amp; QA</h3>
+        <div class="tags"><span class="tag">Selenium</span><span class="tag">Bug Detection</span><span class="tag">Technical Reporting</span></div></div>
+      <div class="card s3 rv"><div class="ico">🛠️</div><h3 data-i18n="k_tools">Herramientas</h3>
+        <div class="tags"><span class="tag">VS Code</span><span class="tag">IntelliJ IDEA</span><span class="tag">Git / GitHub</span><span class="tag">Excel avanzado</span></div></div>
+      <div class="card s3 rv"><div class="ico">🧭</div><h3 data-i18n="k_meth">Metodologías y gestión</h3>
+        <div class="tags"><span class="tag">Agile / Scrum</span><span class="tag">Jira</span><span class="tag">CRM (Pilot)</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="e_exp">// experiencia</div>
+    <h2 class="rv" data-i18n="h_exp">Trayectoria <span class="grad">profesional</span></h2>
+    <div class="tl">
+      <article class="job now rv">
+        <header><div><h3>IT Production Analyst <span style="color:var(--muted);font-weight:400">(Help Desk)</span></h3><div class="co">Boreal IT Solutions</div></div><span class="date" data-i18n="d1">Abr 2026 — Actualidad</span></header>
+        <ul><li data-i18n="j1a">Monitoreo y resolución de incidentes en producción.</li><li data-i18n="j1b">Iniciativas de optimización de procesos y automatización.</li><li data-i18n="j1c">Soporte técnico y asistencia en troubleshooting.</li></ul>
+      </article>
+      <article class="job rv">
+        <header><div><h3>QA Tester</h3><div class="co">Connectis ITC Services</div></div><span class="date" data-i18n="d2">May 2022 — Sep 2022</span></header>
+        <ul><li data-i18n="j2a">Actividades de migración de datos.</li><li data-i18n="j2b">Implementación de soluciones de software y APIs.</li><li data-i18n="j2c">Identificación, análisis y documentación de errores a partir de reportes de incidentes.</li></ul>
+      </article>
+      <article class="job rv">
+        <header><div><h3>QA Tester</h3><div class="co">Ongania</div></div><span class="date" data-i18n="d3">Dic 2021 — Abr 2022</span></header>
+        <ul><li data-i18n="j2a">Actividades de migración de datos.</li><li data-i18n="j2b">Implementación de soluciones de software y APIs.</li><li data-i18n="j2c">Identificación, análisis y documentación de errores a partir de reportes de incidentes.</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="formacion">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i18n="e_edu">// formación</div>
+    <h2 class="rv" data-i18n="h_edu">Educación y <span class="grad">capacitación</span></h2>
+    <div class="edu">
+      <div class="course main rv"><div><div class="d">2021 — <span data-i18n="now">Actualidad</span></div><h3 data-i18n="deg">Ingeniería en Sistemas</h3><p style="color:var(--muted)">Universidad Abierta Interamericana · <span data-i18n="year3">3.er año, en curso</span></p></div><span class="date">🎓</span></div>
+      <div class="course rv"><div class="d">Jul 2026</div><h3>Data Analytics with Python</h3><p>Talento Tech</p></div>
+      <div class="course rv"><div class="d">Dic 2025</div><h3>Back-End / Java</h3><p>Talento Tech</p></div>
+      <div class="course rv"><div class="d">Jun 2025</div><h3>Back-End / Java</h3><p>Talento Tech</p></div>
+      <div class="course rv"><div class="d">Dic 2024</div><h3>Front-End JS</h3><p>Talento Tech</p></div>
+      <div class="course rv"><div class="d">Dic 2023</div><h3>Data Science</h3><p>Coderhouse</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="contact rv">
+      <div class="eyebrow">// contacto</div>
+      <h2 data-i18n="h_contact">¿Armamos algo <span class="grad">juntos?</span></h2>
+      <p data-i18n="contact_p">Estoy abierto a oportunidades en desarrollo Back-End, QA y análisis de datos. Escribime y charlamos.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:dante.alberto.l.schlogl@gmail.com">✉ Email</a>
+        <a class="btn ghost" href="https://wa.me/541124679696" target="_blank" rel="noopener">WhatsApp ↗</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/dante-alberto-luis-orihuela-schl%C3%B6gl-703931103" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="info"><span>📍 Buenos Aires, Argentina</span><span>📞 +54 11 2467 9696</span><span>dante.alberto.l.schlogl@gmail.com</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="yr"></span> Dante Alberto Luis O. Schlögl</footer>
+
+<script>
+const T={
+es:{nav_about:"Sobre mí",nav_skills:"Skills",nav_exp:"Experiencia",nav_edu:"Formación",nav_contact:"Contacto",
+badge:"Disponible para nuevas oportunidades · Buenos Aires",
+lead:"Estudiante de Ingeniería en Sistemas con base en Java/Spring Boot, calidad de software y análisis de datos. Me gusta resolver problemas, automatizar procesos y entregar soluciones sólidas en equipos ágiles.",
+cta1:"Hablemos →",s1:"años de Ingeniería en Sistemas",s2:"roles en IT y QA",s3:"cursos técnicos completados",s4:"idiomas",
+e_about:"// sobre mí",h_about:'Mente analítica, <span class="grad">enfoque en calidad</span>',
+about1:"Soy estudiante de <strong>Ingeniería en Sistemas</strong> en la Universidad Abierta Interamericana, con experiencia práctica en <strong>testing, migración de datos, APIs y soporte de producción</strong>.",
+about2:"Trabajo con metodologías ágiles (Scrum), me motiva aprender tecnologías nuevas de forma continua y aportar a equipos de alto rendimiento con <strong>soluciones eficientes y de calidad</strong>.",
+about3:"Mi recorrido combina tres frentes: desarrollo <strong>Back-End</strong>, <strong>QA</strong> y <strong>análisis de datos</strong>.",
+l1:"Nativo",l2:"Avanzado",l3:"Intermedio-alto (B2)",
+h_skills:'Stack y <span class="grad">herramientas</span>',k_tools:"Herramientas",k_meth:"Metodologías y gestión",
+e_exp:"// experiencia",h_exp:'Trayectoria <span class="grad">profesional</span>',
+d1:"Abr 2026 — Actualidad",d2:"May 2022 — Sep 2022",d3:"Dic 2021 — Abr 2022",
+j1a:"Monitoreo y resolución de incidentes en producción.",j1b:"Iniciativas de optimización de procesos y automatización.",j1c:"Soporte técnico y asistencia en troubleshooting.",
+j2a:"Actividades de migración de datos.",j2b:"Implementación de soluciones de software y APIs.",j2c:"Identificación, análisis y documentación de errores a partir de reportes de incidentes.",
+e_edu:"// formación",h_edu:'Educación y <span class="grad">capacitación</span>',now:"Actualidad",deg:"Ingeniería en Sistemas",year3:"3.er año, en curso",
+h_contact:'¿Armamos algo <span class="grad">juntos?</span>',contact_p:"Estoy abierto a oportunidades en desarrollo Back-End, QA y análisis de datos. Escribime y charlamos.",
+roles:["Ingeniero de Sistemas en formación","Desarrollador Back-End Java","QA Tester","Analista de datos con Python"],greet:"Hola, soy"},
+en:{nav_about:"About",nav_skills:"Skills",nav_exp:"Experience",nav_edu:"Education",nav_contact:"Contact",
+badge:"Open to new opportunities · Buenos Aires",
+lead:"Systems Engineering student with a foundation in Java/Spring Boot, software quality and data analytics. I enjoy solving problems, automating processes and delivering solid solutions in agile teams.",
+cta1:"Let's talk →",s1:"years of Systems Engineering",s2:"IT & QA roles",s3:"technical courses completed",s4:"languages",
+e_about:"// about",h_about:'Analytical mind, <span class="grad">quality-driven</span>',
+about1:"I'm a <strong>Systems Engineering</strong> student at Universidad Abierta Interamericana with hands-on experience in <strong>testing, data migration, APIs and production support</strong>.",
+about2:"I work with agile methodologies (Scrum), love continuously learning new technologies and contributing to high-performing teams with <strong>efficient, high-quality solutions</strong>.",
+about3:"My path combines three fronts: <strong>Back-End</strong> development, <strong>QA</strong> and <strong>data analytics</strong>.",
+l1:"Native",l2:"Advanced",l3:"Upper-intermediate (B2)",
+h_skills:'Stack &amp; <span class="grad">tools</span>',k_tools:"Tools",k_meth:"Methodologies & management",
+e_exp:"// experience",h_exp:'Professional <span class="grad">journey</span>',
+d1:"Apr 2026 — Present",d2:"May 2022 — Sep 2022",d3:"Dec 2021 — Apr 2022",
+j1a:"Monitored and resolved production incidents.",j1b:"Implemented process optimization and automation initiatives.",j1c:"Provided technical support and troubleshooting assistance.",
+j2a:"Performed data migration activities.",j2b:"Implemented software solutions and APIs.",j2c:"Identified, analyzed and documented errors based on incident reports.",
+e_edu:"// education",h_edu:'Education &amp; <span class="grad">training</span>',now:"Present",deg:"Systems Engineering",year3:"3rd year, in progress",
+h_contact:'Let\'s build something <span class="grad">together?</span>',contact_p:"I'm open to opportunities in Back-End development, QA and data analytics. Drop me a line.",
+roles:["Systems Engineering student","Java Back-End Developer","QA Tester","Data Analyst with Python"],greet:"Hi, I'm"}
+};
+let lang=(()=>{try{return localStorage.getItem('lang')}catch(e){return null}})()||'es';
+const $=s=>document.querySelector(s);
+function apply(){
+  const d=T[lang];document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=d[el.dataset.i18n];if(v!==undefined)el.innerHTML=v});
+  $('h1').innerHTML=d.greet+' <span class="grad">Dante Schlögl</span>';
+  $('#lang').textContent=lang==='es'?'EN':'ES';
+  roleIdx=0;charIdx=0;deleting=false;
+}
+$('#lang').onclick=()=>{lang=lang==='es'?'en':'es';try{localStorage.setItem('lang',lang)}catch(e){}apply()};
+
+/* theme */
+const root=document.documentElement;
+let theme=(()=>{try{return localStorage.getItem('theme')}catch(e){return null}})()||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+function setTheme(t){theme=t;root.dataset.theme=t;$('#theme').textContent=t==='dark'?'☾':'☀';try{localStorage.setItem('theme',t)}catch(e){}}
+$('#theme').onclick=()=>setTheme(theme==='dark'?'light':'dark');setTheme(theme);
+
+/* typewriter */
+let roleIdx=0,charIdx=0,deleting=false;
+(function type(){
+  const r=T[lang].roles[roleIdx%T[lang].roles.length];
+  $('#typed').textContent=r.slice(0,charIdx);
+  if(!deleting&&charIdx===r.length){deleting=true;return setTimeout(type,1700)}
+  if(deleting&&charIdx===0){deleting=false;roleIdx++}
+  charIdx+=deleting?-1:1;
+  setTimeout(type,deleting?28:65);
+})();
+
+/* reveal + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll?.('[data-count]').forEach(c=>{
+    const n=+c.dataset.count;let i=0;const t=setInterval(()=>{c.textContent=++i+(c.dataset.suffix||'');if(i>=n)clearInterval(t)},260);
+  });
+  e.target.classList.contains('lang')||e.target.querySelectorAll?.('.lang').forEach(l=>l.classList.add('in'));
+  io.unobserve(e.target);
+}),{threshold:.15});
+document.querySelectorAll('.rv,.lang').forEach(el=>io.observe(el));
+document.querySelectorAll('.lang').forEach(l=>{l.classList.add('rv')});
+
+/* card spotlight */
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointermove',e=>{
+  const r=c.getBoundingClientRect();c.style.setProperty('--x',e.clientX-r.left+'px');c.style.setProperty('--y',e.clientY-r.top+'px');
+}));
+$('#yr').textContent=new Date().getFullYear();
+apply();
+</script>
+</body>
+</html>
